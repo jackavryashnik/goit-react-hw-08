@@ -5,21 +5,28 @@ import SearchBox from '../SearchBox/SearchBox';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from '../../redux/contacts/operations';
+import { refreshUser } from '../../redux/auth/operations';
+import { selectIsRefreshing } from '../../redux/auth/selectors';
+import { selectError, selectLoading } from '../../redux/contacts/selectors';
 // import { Route, Routes } from 'react-router-dom';
 // import { lazy, Suspense } from 'react';
 
 function App() {
   const dispatch = useDispatch();
-  const error = useSelector(state => state.contacts.error);
-  const loading = useSelector(state => state.contacts.loading);
+  const error = useSelector(selectError);
+  const loading = useSelector(selectLoading);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <b>User is refreshing, please wait...</b>
+  ) : (
     <>
-    {/* <Suspense fallback={<div>Loading...</div>}> */}
+      {/* <Suspense fallback={<div>Loading...</div>}> */}
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox>Find contacts by name</SearchBox>
