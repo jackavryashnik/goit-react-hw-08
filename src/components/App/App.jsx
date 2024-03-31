@@ -12,16 +12,16 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
 const HomePage = lazy(() => import('../../pages/HomePage'));
-const ContactsPage = lazy(() => import('../../pages/ContactsPage'));
-const Registration = lazy(() => import('../../pages/Registration'));
 const Login = lazy(() => import('../../pages/Login'));
+const Registration = lazy(() => import('../../pages/Registration'));
+const ContactsPage = lazy(() => import('../../pages/ContactsPage'));
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    // dispatch(fetchContacts());
     dispatch(refreshUser());
   }, [dispatch]);
 
