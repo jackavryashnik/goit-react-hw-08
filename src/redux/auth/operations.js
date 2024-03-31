@@ -22,6 +22,7 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk('auth/login', async (_, thunkAPI) => {
   try {
     const response = await axios.post('auth/login');
+    setAuthToken(response.data.token);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

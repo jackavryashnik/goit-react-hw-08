@@ -1,4 +1,4 @@
-import LoginFrom from '../components/LoginFrom/LoginFrom';
+import LoginFrom from '../components/LoginForm/LoginForm';
 
 const Login = () => {
   return (
