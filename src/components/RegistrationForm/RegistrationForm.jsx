@@ -3,29 +3,27 @@ import { useId } from 'react';
 import * as Yup from 'yup';
 import css from './LoginForm.module.css'
 import register from '../../redux/auth/operations'
+import { useDispatch } from 'react-redux';
 
-const SignupSchema = Yup.object().shape({
-  email: Yup.string()
-    .min(3, 'Too Short! Min length 3')
-    .max(50, 'Too Long! Max length 50')
-    .required('Required'),
-  password: Yup.string()
-    .min(8, 'Too Short! Min length 8')
-    .max(50, 'Too Long! Max length 50')
-    .required('Required'),
+const validationSchema = Yup.object({
+  name: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid email format').required('Required'),
+  password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required'),
 });
 
 const RegistrationForm = () => {
+  const dispatch = useDispatch();
   const registerFormId = useId();
 
-  const handleRegistrate = (values) => {
-    register(values);
+  const handleRegistrate = (values, actions) => {
+    dispatch(register(values))
+    actions.resetForm();
   }
 
-  return <Formik
+  return (<Formik
   initialValues={{ name: '', email: '', password: '' }}
   onSubmit={handleRegistrate}
-  validationSchema={SignupSchema}>
+  validationSchema={validationSchema}>
     <Form>
       <div className={css.inputWrapper}>
         <label htmlFor={`${registerFormId}-name`}>Name</label>
@@ -43,7 +41,7 @@ const RegistrationForm = () => {
         <ErrorMessage name="password" component="span" className={css.error} />
       </div>
     </Form>
-  </Formik>;
+  </Formik>)
 };
 
 export default RegistrationForm;
