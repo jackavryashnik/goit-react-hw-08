@@ -1,9 +1,9 @@
-import RegistrationFrom from '../components/RegistrationFrom/RegistrationFrom';
+import RegistrationForm from '../components/RegistrationForm/RegistrationForm';
 
 const Registration = () => {
   return (
     <div>
-      <RegistrationFrom />
+      <RegistrationForm />
     </div>
   );
 };
