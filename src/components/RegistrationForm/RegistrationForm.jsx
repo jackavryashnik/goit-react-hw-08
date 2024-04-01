@@ -1,7 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { useId } from 'react';
 import * as Yup from 'yup';
-import css from './LoginForm.module.css'
 import register from '../../redux/auth/operations'
 import { useDispatch } from 'react-redux';
 
@@ -25,20 +24,20 @@ const RegistrationForm = () => {
   onSubmit={handleRegistrate}
   validationSchema={validationSchema}>
     <Form>
-      <div className={css.inputWrapper}>
+      <div>
         <label htmlFor={`${registerFormId}-name`}>Name</label>
         <Field type="text" name="name" id={`${registerFormId}-name`} />
-        <ErrorMessage name="name" component="span" className={css.error} />
+        <ErrorMessage name="name" component="span" />
       </div>
-      <div className={css.inputWrapper}>
+      <div>
         <label htmlFor={`${registerFormId}-email`}>Email</label>
         <Field type="text" name="email" id={`${registerFormId}-email`} />
-        <ErrorMessage name="email" component="span" className={css.error} />
+        <ErrorMessage name="email" component="span" />
       </div>
-      <div className={css.inputWrapper}>
+      <div>
         <label htmlFor={`${registerFormId}-password`}>Password</label>
         <Field type="text" name="password" id={`${registerFormId}-password`} />
-        <ErrorMessage name="password" component="span" className={css.error} />
+        <ErrorMessage name="password" component="span" />
       </div>
     </Form>
   </Formik>)
