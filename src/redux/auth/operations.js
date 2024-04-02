@@ -4,11 +4,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 const setAuthToken = token => {
-  axios.defaults.headers.common['Authorothation'] = `Bearer ${token}`;
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
 
 const clearAuthToken = () => {
-  axios.defaults.headers.common['Authorothation'] = '';
+  axios.defaults.headers.common['Authorization'] = '';
 };
 
 export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
@@ -33,8 +33,9 @@ export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/users/logout');
+    const { data } = await axios.post('/users/logout');
     clearAuthToken();
+    return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

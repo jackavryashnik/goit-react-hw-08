@@ -38,6 +38,7 @@ const LoginForm = () => {
             component="span"
           />
         </div>
+        <button type='submit'>Login</button>
       </Form>
     </Formik>
   );

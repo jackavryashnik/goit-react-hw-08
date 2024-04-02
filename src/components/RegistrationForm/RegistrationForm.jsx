@@ -40,6 +40,7 @@ const RegistrationForm = () => {
         <Field type="text" name="password" id={`${registerFormId}-password`} />
         <ErrorMessage name="password" component="span" className={css.error} />
       </div>
+      <button type='submit'>Registrate</button>
     </Form>
   </Formik>)
 };
