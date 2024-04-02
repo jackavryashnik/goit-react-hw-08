@@ -39,11 +39,11 @@ function App() {
             />
             <Route
               path="/login"
-              element={<RestrictedRoute comoinent={<Login />} />}
+              element={<RestrictedRoute component={<Login />} />}
             />
             <Route
               path="/register"
-              element={<RestrictedRoute comoinent={<Registration />} />}
+              element={<RestrictedRoute component={<Registration />} />}
             />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

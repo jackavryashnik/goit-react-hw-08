@@ -28,7 +28,7 @@ const LoginForm = () => {
         <div >
           <label htmlFor={`${loginFormId}-email`}>Email</label>
           <Field type="text" name="email" id={`${loginFormId}-email`} />
-          <ErrorMessage name="email" component="spam" />
+          <ErrorMessage name="email" component="span" />
         </div>
         <div >
           <label htmlFor={`${loginFormId}-password`}>Name</label>
