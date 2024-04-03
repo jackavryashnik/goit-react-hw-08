@@ -4,7 +4,7 @@ import SearchBox from '../components/SearchBox/SearchBox';
 import { selectError, selectLoading } from '../redux/contacts/selectors';
 import { useSelector } from 'react-redux';
 
-const ContactsPage = () => {
+const Contacts = () => {
   const error = useSelector(selectError);
   const loading = useSelector(selectLoading);
 
@@ -17,4 +17,4 @@ const ContactsPage = () => {
   <ContactList /></div>;
 }
 
-export default ContactsPage
+export default Contacts

@@ -8,7 +8,7 @@ export const selectLoading = state => state.contacts.loading;
 export const selectFilteredContacts = createSelector(
   [selectItems, selectNameFilter],
   (contacts, filter) => {
-    return contacts.filter(contact =>
+    if (contacts.length > 0) return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   }

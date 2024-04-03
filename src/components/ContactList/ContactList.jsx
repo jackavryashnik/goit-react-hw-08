@@ -14,7 +14,7 @@ const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  return (
+  if (filteredContacts) return (
     <ul className={css.list}>
       {filteredContacts.map(contact => (
         <Contact key={contact.id} contact={contact} />

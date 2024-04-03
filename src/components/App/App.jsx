@@ -12,7 +12,7 @@ import { lazy, Suspense } from 'react';
 const HomePage = lazy(() => import('../../pages/HomePage'));
 const Login = lazy(() => import('../../pages/Login'));
 const Registration = lazy(() => import('../../pages/Registration'));
-const ContactsPage = lazy(() => import('../../pages/ContactsPage'));
+const Contacts = lazy(() => import('../../pages/Contacts'));
 
 function App() {
   const dispatch = useDispatch();
@@ -29,15 +29,15 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route
               path="/contacts"
-              element={<PrivateRout component={<ContactsPage />} />}
+              element={<PrivateRout redirectTo="/login" component={<Contacts />} />}
             />
             <Route
               path="/login"
-              element={<RestrictedRoute component={<Login />} />}
+              element={<RestrictedRoute redirectTo="/contacts" component={<Login />} />}
             />
             <Route
               path="/register"
-              element={<RestrictedRoute component={<Registration />} />}
+              element={<RestrictedRoute redirectTo="/contacts" component={<Registration />} />}
             />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

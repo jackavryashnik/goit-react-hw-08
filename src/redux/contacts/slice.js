@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, deleteContact, addContact } from './operations';
+import {logout, login, register, refreshUser} from '../auth/operations'
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -45,7 +46,45 @@ const contactsSlice = createSlice({
       .addCase(addContact.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
+      .addCase(register.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(register.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(login.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(login.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(logout.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(logout.fulfilled, state  => {
+        state.loading = false;
+        state.items = [];
+      })
+      .addCase(refreshUser.pending, state => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = action.payload;
+      })
   },
 });
 
