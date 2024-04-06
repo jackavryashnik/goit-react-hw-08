@@ -81,9 +81,8 @@ const contactsSlice = createSlice({
         state.error = null;
         state.loading = true;
       })
-      .addCase(refreshUser.fulfilled, (state, action) => {
+      .addCase(refreshUser.fulfilled, (state) => {
         state.loading = false;
-        state.items = action.payload;
       })
   },
 });
